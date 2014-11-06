@@ -74,7 +74,7 @@ bool Book::operator==(const Book & b) const
 
 friend std::ostream & operator<<(std::ostream & os, const Book & b)
 {
-    os << "Title, Author, Year, ISBN, Rating = "<< m_title<<", "<<m_author<<", "<<m_year<<", "<<m_isbn<<", "<<m_rating;
+    os << "Title, Author, Year, ISBN, Rating = "<< b.m_title<<", "<<b.m_author<<", "<<b.m_year<<", "<<b.m_isbn<<", "<<b.m_rating;
     return os;
 }
 /*
