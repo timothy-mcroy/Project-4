@@ -5,7 +5,7 @@
 //  Created by Timothy McRoy 11/5/2014
 //  Copyright (c) 2014 Timothy McRoy. All rights reserved.
 //
-
+#include "book.h"
 
 Book::Book()
 {
