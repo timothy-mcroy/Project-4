@@ -8,8 +8,11 @@
 
 
 //Default Constructor
+
+#include "list.h"
+
 List::List()
-{
+{ 
     p_size = 1;
     p_capacity=2;
     p_data = new Book * [p_capacity];
