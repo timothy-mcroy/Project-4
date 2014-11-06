@@ -14,10 +14,10 @@ book.o: book.h
 	$(CC) $(CFLAGS) book.cpp
 
 list.o: list.h
-    $(CC) $(CFLAGS) list.cpp
+	$(CC) $(CFLAGS) list.cpp
 
 loadfile.o: loadfile.h
-    $(CC) $(CFLAGS) loadfile.cpp
+	$(CC) $(CFLAGS) loadfile.cpp
 
 clean:
-    rm *.o main
+	rm *.o main
