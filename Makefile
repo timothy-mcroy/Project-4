@@ -18,6 +18,6 @@ list.o: list.h
 
 loadfile.o: loadfile.h
     $(CC) $(CFLAGS) loadfile.cpp
-    
+
 clean:
-	rm *.o main
+    rm *.o main
