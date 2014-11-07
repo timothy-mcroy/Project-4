@@ -55,7 +55,7 @@ List::~List()
     for (int i = 0; i< list.p_size; i++)
     {
         this->append(*(list.p_data[i]));  //This is currently a deep copy. 
-        this->size =-1;                         //Need to account for the size increase in append()
+        p_size =-1;                         //Need to account for the size increase in append()
     }
 }
 
@@ -100,7 +100,7 @@ bool List::remove(Book item)
             //deletion code here
             idx = i;
             found = true;
-            delete p_data[i]
+            delete p_data[i];
             
             break;
         }
@@ -124,7 +124,7 @@ bool List::remove(Book item)
 
 
 
-int List::size()
+int List::size() const
 {
     return p_size;
 }
@@ -153,7 +153,7 @@ void List::resize()
         p_capacity = p_capacity /2;
         //scale down code here
     }
-    
+}
 
 
 
