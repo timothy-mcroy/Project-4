@@ -148,7 +148,7 @@ void List::resize()
         new_capacity = p_capacity * 2;
         //scale up code here  //use copy constructor for model
      }
-    else if
+    else if (p_size < p_capacity /2) 
     {
         p_capacity = p_capacity /2;
         //scale down code here
