@@ -5,7 +5,6 @@ OBJS = main.o book.o list.o loadfile.o
 
 main: $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o assignment
-	rm *.o
 
 main.o: book.h list.h loadfile.h
 	$(CC) $(CFLAGS) main.cpp
@@ -20,4 +19,4 @@ loadfile.o: loadfile.h
 	$(CC) $(CFLAGS) loadfile.cpp
 
 clean:
-	rm *.o main
+	rm *.o assignment
