@@ -37,8 +37,10 @@ List::List(int size)
 List::~List()
 {
  for (int i = 0; i<p_size+1;i++)  //Likely going to be an error on this line, but I think it's supposed to be structured like this.
- delete *(p_data[i]);  //We have to free each individual element in the list.
- delete p_data[i];
+	{
+ 	delete p_data[i];  //We have to free each individual element in the list.
+ 	}
+ delete p_data;
  }
  
  
@@ -52,8 +54,8 @@ List::~List()
     
     for (int i = 0; i< list.p_size; i++)
     {
-        this.append(*(list.p_data[i]));  //This is currently a deep copy. 
-        this.size =-1;                         //Need to account for the size increase in append()
+        this->append(*(list.p_data[i]));  //This is currently a deep copy. 
+        this->size =-1;                         //Need to account for the size increase in append()
     }
 }
 
@@ -62,13 +64,12 @@ List::~List()
 void List::append(const Book item)
 {
     p_size +=1;
-    if (p_size > capacity)
+    if (p_size > p_capacity)
     {
-        this.resize();
+        this->resize();
     }
-    Book * book = new Book;
-    book = item;
-    *(p_data[p_size]) = book;
+    Book * book = new Book(item);
+    p_data[p_size] = book;
 }
 
 
@@ -99,7 +100,7 @@ bool List::remove(Book item)
             //deletion code here
             idx = i;
             found = true;
-            delete *(p_data[i])
+            delete p_data[i]
             
             break;
         }
