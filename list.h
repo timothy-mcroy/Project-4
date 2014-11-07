@@ -33,6 +33,7 @@ public:
     bool remove(Book item);
     bool contains(Book item) const;
     int size() const;
+    void resize();
 
     Book & operator[](int idx) const;
 };

@@ -115,9 +115,9 @@ bool List::remove(Book item)
     
     p_size =p_size-1;
     }
-    if (p_size < capacity /2 ) 
+    if (p_size < p_capacity /2 ) 
     {
-        this.resize()
+        this->resize();
     }
      return found;
 }
