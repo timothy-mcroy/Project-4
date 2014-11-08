@@ -6,14 +6,18 @@
 //  Copyright (c) 2014 Timothy McRoy . All rights reserved.
 //
 
+#include "list.h"
+
+
+
 
 //Default Constructor
 
-#include "list.h"
+
 
 List::List()
 {
-    p_size = 1;
+    p_size = 0;
     p_capacity=1;
     p_data = new Book * [p_capacity];
     for (int i = 0 ; i< p_capacity; i++)
@@ -24,7 +28,7 @@ List::List()
 //Constructor with size parameter
 List::List(int size)
 {
-    p_size = 0;
+    p_size = size;
     p_capacity = size* 2;
     p_data = new Book * [p_capacity];
     for (int i = 0 ; i< p_capacity; i++)
@@ -46,17 +50,39 @@ List::~List()
  //Copy Constructor
  List::List(const List & list)
  {
-    p_size = list.p_size;
+    p_size = 0;
     p_capacity = list.p_capacity;
 
-    p_data = new Book*[list.p_size];
+    p_data = new Book*[list.p_capacity];
 
     for (int i = 0; i< list.p_size; i++)
     {
-        append(*(list.p_data[i]));  //This is currently a deep copy.
-        p_size =-1;                         //Need to account for the size increase in append()
+
+        append(*list.p_data[i]);  //This is currently a deep copy.
     }
 }
+
+
+//Assignment operator
+List List::operator=(const List & list)
+{
+    if (&list ==this)
+        return *this;
+
+    for (int i = 0; i<p_size;i++)
+        {
+            delete p_data[i];
+            p_data[i] = NULL;
+        }
+    p_size = 0;         //append takes care of building the new list to the appropriate size and capacity.
+    p_capacity =1;
+    for(int i =0; i<list.p_size;i++)
+    {
+        append(list[i]);
+    }
+    return *this;
+}
+
 
 
 int List::size() const
@@ -73,9 +99,7 @@ void List::append(const Book item)
     }
     Book * book = new Book(item);
     p_data[p_size-1] = book;
-
 }
-
 
 
 bool List::contains(Book item) const
@@ -104,6 +128,8 @@ int List::index(const Book &item) const
     return -1;
 }
 
+
+//Supporting search and delete
 bool List::remove(Book item)
 {
 
@@ -140,22 +166,22 @@ bool List::remove(Book item)
 
 
 
-
+//Index operator
 Book & List::operator[](int idx) const
 {
-    if (idx < 0)  //Allowing for negative indexing as in python.  Because python is awesome.
+    if (idx < 0)                        //Allowing for negative indexing as in python.  Because python is awesome.
     {
-        idx = p_size - idx;
+        idx = p_size + idx;
     }
-    if(p_data[idx]==NULL) // These lines handle assignment by index.
+    if(p_data[idx]==NULL)               // These lines handle assignment by index.
     {
-        if (idx <= p_size)
+        if (idx < p_size)
             {
                 p_data[idx]= new Book(); //The best we can do since Book can't have an assignment operator
             }
         else
         {
-            std::cout<<"List index out of range! Aborting program"<<std::endl;
+            std::cout<<"List index out of range!"<<std::endl;
         }
 
     }
@@ -164,30 +190,30 @@ Book & List::operator[](int idx) const
 }
 
 
-
+//Size management
 void List::p_resize()
 {
     if (p_size >= p_capacity)
      {
 
         p_capacity = p_capacity * 2;
-        //scale up code here  //use copy constructor for model
+        //scale up code here
         Book ** new_data = new Book*[p_capacity];
         for (int i = 0; i< p_size; i++)
         {
-            new_data[i] = p_data[i]; //Copying only the pointers
+            new_data[i] = p_data[i];    //Copying only the pointers
          }
         p_data = new_data;
     }
     else if (p_size < p_capacity /2)
     {
         p_capacity = p_capacity /2;
-        //scale down code here
+                                        //scale down code here
         Book ** new_data = new Book*[p_capacity];
 
         for (int i = 0; i< p_size; i++)
         {
-            new_data[i] = p_data[i]; //Copying only the pointers
+            new_data[i] = p_data[i];    //Copying only the pointers
          }
          p_data = new_data;
 
@@ -198,7 +224,7 @@ void List::p_resize()
     }
 }
 
-
+//Friend of List class
 std::ostream & operator<<(std::ostream & os, const List & listy)
 {
     if (&listy==NULL)
@@ -209,7 +235,7 @@ std::ostream & operator<<(std::ostream & os, const List & listy)
     os<<"[";
     for (int i = 0; i< listy.size()-1;i++)
         {
-            os<<listy[i]<<" , "<<std::endl;
+            os<<listy[i]<<" , ";
         }
     os<<listy[listy.size()-1]<<"]";
     return os;

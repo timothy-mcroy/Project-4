@@ -34,8 +34,9 @@ public:
     bool contains(Book item) const;
     int index(const Book &item) const;
     int size() const;
-
+    void sort();
     Book & operator[](int idx) const;
+    List operator=(const List & list);
     friend std::ostream & operator<<(std::ostream & os, const List & listy);
 };
 
