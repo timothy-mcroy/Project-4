@@ -13,8 +13,8 @@
 
 List::List()
 {
-    p_size = 0;
-    p_capacity=0;
+    p_size = 1;
+    p_capacity=1;
     p_data = new Book * [p_capacity];
     for (int i = 0 ; i< p_capacity; i++)
         p_data[i] = NULL;
