@@ -146,9 +146,9 @@ void List::resize()
     
     if (p_size <= p_capacity)
      {
-        new_capacity = p_capacity * 2;
+        p_capacity = p_capacity * 2;
         //scale up code here  //use copy constructor for model
-        Book ** new_data = new Book*[new_capacity];
+        Book ** new_data = new Book*[p_capacity];
      
         for (int i = 0; i< p_size; i++)
         {
@@ -160,7 +160,7 @@ void List::resize()
     {
         p_capacity = p_capacity /2;
         //scale down code here
-        Book ** new_data = new Book*[new_capacity];
+        Book ** new_data = new Book*[p_capacity];
      
         for (int i = 0; i< p_size; i++)
         {
