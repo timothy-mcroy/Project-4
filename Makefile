@@ -19,7 +19,7 @@ loadfile.o: loadfile.h
 	$(CC) $(CFLAGS) loadfile.cpp
     
 booksort.o: booksort.h
-    $(CC) $(CFLAGS) booksort.cpp
+	$(CC) $(CFLAGS) booksort.cpp
 
 clean:
 	rm *.o sort
