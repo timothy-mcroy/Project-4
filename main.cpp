@@ -15,10 +15,9 @@ int main( int argc, const char * argv[] ) {
 
     // create and populate your list using this function call
     List list = List();
-    char filename[] = "test_subset.tsv"
-    //load_book_data(filename, list);
-    Book eli = Book("thirteen","My lovely lady lumps", "John Kosher", 1351, 123.134);
-    std::cout<<eli<<std::endl;
-    std::cout<<"I hope that this still runs!"<<std::endl;
+    char filename[] = "test_subset.tsv";
+    load_book_data(filename, list);
     return 0;
 }
+
+

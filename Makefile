@@ -19,4 +19,4 @@ loadfile.o: loadfile.h
 	$(CC) $(CFLAGS) loadfile.cpp
 
 clean:
-	rm *.o assignment
+	rm *.o sort

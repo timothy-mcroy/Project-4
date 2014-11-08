@@ -14,6 +14,7 @@ Book::Book()
     m_author = "";
     m_rating  = -1.0;
     m_year    = -1;
+
 }
 
 
@@ -22,8 +23,8 @@ Book::Book(std::string isbn, std::string title, std::string author, int year, fl
     m_isbn    = isbn;
     m_title    = title;
     m_author = author;
-    m_rating  = year;
-    m_year    = rating;
+    m_rating  = rating;
+    m_year    = year;
 }
 
 Book::~Book()
@@ -63,7 +64,7 @@ float Book::rating() const
 
 
 //Comparison operators
-//Eq and nEq compare all of the elements, where the < <= > >= only compare rating.
+//== and != compare all of the elements, where the < <= > >= only compare rating.
 
 bool Book::operator==(const Book & b) const
 {
@@ -72,8 +73,14 @@ bool Book::operator==(const Book & b) const
 
 
 
+
 std::ostream & operator<<(std::ostream & os, const Book & b)
 {
+    if (&b==NULL)
+    {
+        os<< "b is not a valid book right now";
+        return os;
+    }
     os << "Title, Author, Year, ISBN, Rating = "<< b.m_title<<", "<<b.m_author<<", "<<b.m_year<<", "<<b.m_isbn<<", "<<b.m_rating;
     return os;
 }
@@ -83,7 +90,7 @@ bool Book::operator!=(const Book & b) const
     return (m_isbn != b.m_isbn && m_author !=b.m_author && m_rating != b.m_rating && m_title !=b.m_title && m_year != b.m_year);
 }
 
-//comparing only rating from here on. 
+//comparing only rating from here on.
 
 bool Book::operator<(const Book & b) const
 {
@@ -108,4 +115,3 @@ bool Book::operator>=(const Book & b) const
 
 
 
-    
