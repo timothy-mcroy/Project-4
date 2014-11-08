@@ -143,15 +143,30 @@ Book & List::operator[](int idx) const
 void List::resize()
 {
     int new_capacity;
+    
     if (p_size <= p_capacity)
      {
         new_capacity = p_capacity * 2;
         //scale up code here  //use copy constructor for model
-     }
+        Book ** new_data = new Book*[new_capacity];
+     
+        for (int i = 0; i< p_size; i++)
+        {
+            new_data[i] = p_data[i]; //Copying only the pointers
+         }
+        p_data = new_data;
+    }
     else if (p_size < p_capacity /2) 
     {
         p_capacity = p_capacity /2;
         //scale down code here
+        Book ** new_data = new Book*[new_capacity];
+     
+        for (int i = 0; i< p_size; i++)
+        {
+            new_data[i] = p_data[i]; //Copying only the pointers
+         }
+         p_data = new_data;
     }
 }
 
