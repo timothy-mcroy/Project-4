@@ -14,8 +14,8 @@
 int main( int argc, const char * argv[] ) {
 
     // create and populate your list using this function call
-    //List list = List();
-    load_book_data(filename, list);
+    List list = List();
+    load_book_data("test_subset.tsv", list);
     std::cout<<"I hope that this still runs!"<<std::endl;
     return 0;
 }
