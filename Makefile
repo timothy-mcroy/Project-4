@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -Wall -c
 LFLAGS = -Wall
-OBJS = main.o book.o list.o loadfile.o
+OBJS = main.o book.o list.o loadfile.o booksort.o
 
 main: $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o assignment
@@ -17,6 +17,9 @@ list.o: list.h
 
 loadfile.o: loadfile.h
 	$(CC) $(CFLAGS) loadfile.cpp
+    
+booksort.o: booksort.h
+    $(CC) $(CFLAGS) booksort.cpp
 
 clean:
 	rm *.o sort
